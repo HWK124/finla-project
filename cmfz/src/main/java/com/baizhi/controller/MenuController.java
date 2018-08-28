@@ -22,6 +22,6 @@ public class MenuController {
     public String queryAll(HttpSession session) {
         List<Menu> list = menuService.queryAll();
         session.setAttribute("list", list);
-        return "";
+        return "redirect:/main/main.jsp";
     }
 }

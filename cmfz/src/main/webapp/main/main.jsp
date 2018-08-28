@@ -1,17 +1,24 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>持名法州主页</title>
-    <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/IconExtension.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/themes/icon.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
         <!--菜单处理-->
-
+        $(function () {
+            $('#aa').accordion({
+                width: 100,
+                height: 20,
+            })
+        });
     </script>
 
 </head>
@@ -32,7 +39,10 @@
 
 <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">
     <div id="aa" class="easyui-accordion" data-options="fit:true">
-
+        <c:forEach var="list" items="${sessionScope.list}">
+            <div data-options="title:'${list.title}',iconCls:'icon-ok'">
+            </div>
+        </c:forEach>
     </div>
 </div>
 <div data-options="region:'center'">

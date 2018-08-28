@@ -22,9 +22,9 @@ public class AdminController {
         admin.setPassword(password);
 
         if (adminService.login(admin) != null) {
-            return "";
+            return "redirect:/menu/queryAll";
         } else {
-            return "";
+            return "login";
         }
 
     }
