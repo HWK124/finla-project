@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by Administrator on 2018/8/28.
  */
 @Controller
-@RequestMapping
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login(String userName, String password) {
         Admin admin = new Admin();
         admin.setUserName(userName);
