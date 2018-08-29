@@ -14,11 +14,53 @@
     <script type="text/javascript">
         <!--菜单处理-->
         $(function () {
-            $('#aa').accordion({
-                width: 100,
-                height: 20,
-            })
+            //发送先ajax请求
+            $.ajax({
+                url: "${pageContext.request.contextPath}/menu/queryAll",
+                success: function (data) {
+                    console.log(data)
+                    $.each(data, function (index, first) {
+
+                        var c = "";
+                        $.each(first.content, function (index2, second) {
+                            c += "<p style='text-align: center'>" +
+                                "<a href='#' data-options=\"iconCls:'icon-search'\" class='easyui-linkbutton'" +
+                                " onclick=\"addTabs('" + second.iconCls + "','" + second.title + "','" + second.href + "')\"" +
+                                ">" + second.title + "</a></p>";
+                        });
+                        /* $.each(first.content,function(index2,second){
+                         c+="<p style='text-align: center'>" +
+                         "<a href='#' data-options=\"iconCls:'icon-search'\" class='easyui-linkbutton'" +
+                         "onclick=\"addTabs('"+second.iconCls+"','"+second.title+"','"+second.href+"','"+second.title+"')\"><a>" +
+                         "</p>"
+                         });*/
+
+                        $('#aa').accordion('add', {
+                            title: first.title,
+                            content: c,
+                            iconCls: first.iconCls,
+                            selected: false
+                        });
+                    });
+                }
+            });
         });
+
+        function addTabs(iconCls, title, href) {
+            /*创建选项卡*/
+            var flag = $('#tt').tabs('exists', title);
+            if (flag) {
+                $("#tt").tabs("select", title)
+            } else {
+                $('#tt').tabs('add', {
+                    title: title,
+                    selected: true,
+                    closable: true,
+                    href: "${pageContext.request.contextPath}" + href
+                });
+            }
+
+        }
     </script>
 
 </head>
@@ -39,10 +81,6 @@
 
 <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">
     <div id="aa" class="easyui-accordion" data-options="fit:true">
-        <c:forEach var="list" items="${sessionScope.list}">
-            <div data-options="title:'${list.title}',iconCls:'icon-ok'">
-            </div>
-        </c:forEach>
     </div>
 </div>
 <div data-options="region:'center'">

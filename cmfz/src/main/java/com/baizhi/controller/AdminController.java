@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by Administrator on 2018/8/28.
  */
@@ -16,16 +18,13 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping("/login")
-    public String login(String userName, String password) {
-        Admin admin = new Admin();
-        admin.setUserName(userName);
-        admin.setPassword(password);
+    public String login(Admin admin, String clientCode, HttpSession session) {
 
-        if (adminService.login(admin) != null) {
-            return "redirect:/menu/queryAll";
-        } else {
-            return "login";
+        //取出随机验证码
+        String serverCode = (String) session.getAttribute("serverCode");
+        if (serverCode.equalsIgnoreCase(clientCode)) {
+            if (adminService.login(admin) != null) return "redirect:/menu/queryAll";
         }
-
+        return "login";
     }
 }

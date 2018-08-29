@@ -13,11 +13,14 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/script/common.js"></script>
     <script type="text/javascript">
+        function fun(tag) {
+            tag.src = "${pageContext.request.contextPath }/captcha/createCaptcha.do?time=" + new Date();
+        }
 
         $(function () {
             //点击更换验证码：
             $("#captchaImage").click(function () {//点击更换验证码
-                alert("自己做11");
+                fun(this);
             });
 
             //  form 表单提交
@@ -60,8 +63,9 @@
                 <td>&nbsp;</td>
                 <th>验证码:</th>
                 <td>
-                    <input type="text" id="enCode" name="enCode" class="text captcha" maxlength="4" autocomplete="off"/>
-                    <img id="captchaImage" class="captchaImage" src="img/captcha.jpg" title="点击更换验证码"/>
+                    <input type="text" id="enCode" name="clientCode" class="text captcha" autocomplete="off"/>
+                    <img id="captchaImage" class="captchaImage"
+                         src="${pageContext.request.contextPath }/captcha/createCaptcha.do" title="点击更换验证码"/>
                 </td>
             </tr>
             <tr>
