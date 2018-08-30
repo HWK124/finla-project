@@ -1,9 +1,11 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/8/28.
  */
-public class Admin {
+public class Admin implements Serializable {
     private Integer id;
     private String userName;
     private String password;

@@ -1,11 +1,12 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/8/28.
  */
-public class Menu {
+public class Menu implements Serializable {
     private Integer id;
     private String title;
     private String href;

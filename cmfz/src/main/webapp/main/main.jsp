@@ -11,6 +11,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.edatagrid.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>
     <script type="text/javascript">
         <!--菜单处理-->
         $(function () {
@@ -18,7 +20,6 @@
             $.ajax({
                 url: "${pageContext.request.contextPath}/menu/queryAll",
                 success: function (data) {
-                    console.log(data)
                     $.each(data, function (index, first) {
 
                         var c = "";
@@ -57,9 +58,9 @@
                     selected: true,
                     closable: true,
                     href: "${pageContext.request.contextPath}" + href
+                    //href: "${pageContext.request.contextPath}/main/banner.jsp"
                 });
             }
-
         }
     </script>
 
